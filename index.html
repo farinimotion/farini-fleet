@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farini Motion — Sustainable African Transportation</title>
-<meta name="description" content="Invest in electric 2, 3, and 4-wheelers. We sources the vehicles, vets the drivers, and runs the fleet — you earn the returns.">
+<title>Farini Motion — Own an EV. Earn from it.</title>
+<meta name="description" content="Invest in electric 2, 3, and 4-wheelers. Farini Motion sources the vehicle, vets the driver, and runs the fleet — you earn the returns.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -870,7 +870,7 @@
             <span class="vehicle-tag">2-Wheeler</span>
             <h3>E-bikes & scooters</h3>
             <p class="desc">Electric bikes and scooters built for quick, last-mile delivery runs.</p>
-            <p class="vehicle-price"><span>Indicative price</span>From ₦2,500,000</p>
+            <p class="vehicle-price"><span>Indicative price</span>From ₦650,000</p>
             <p class="vehicle-use">Best for: <b>Last-mile delivery</b></p>
             <a href="#invest" class="btn btn-outline btn-block btn-sm">Request to Invest</a>
           </div>
@@ -882,7 +882,7 @@
             <span class="vehicle-tag">3-Wheeler</span>
             <h3>E-tricycles (Keke)</h3>
             <p class="desc">Electric tricycles running keke routes and short-haul passenger transport.</p>
-            <p class="vehicle-price"><span>Indicative price</span>From ₦4,950,000</p>
+            <p class="vehicle-price"><span>Indicative price</span>From ₦1,800,000</p>
             <p class="vehicle-use">Best for: <b>Keke & tricycle transport</b></p>
             <a href="#invest" class="btn btn-outline btn-block btn-sm">Request to Invest</a>
           </div>
@@ -894,7 +894,7 @@
             <span class="vehicle-tag">4-Wheeler</span>
             <h3>Electric cars</h3>
             <p class="desc">Electric cars built for ride-hailing and longer-distance trips.</p>
-            <p class="vehicle-price"><span>Indicative price</span>From ₦18,500,000</p>
+            <p class="vehicle-price"><span>Indicative price</span>From ₦9,500,000</p>
             <p class="vehicle-use">Best for: <b>Ride-hailing</b></p>
             <a href="#invest" class="btn btn-outline btn-block btn-sm">Request to Invest</a>
           </div>
@@ -981,8 +981,8 @@
               <label for="vehicleType">Vehicle type <span class="req">*</span></label>
               <select id="vehicleType" name="vehicleType" required>
                 <option value="">Select an option</option>
-                <option value="2-Wheeler">e-Bikes</option>
-                <option value="3-Wheeler">e-Trikes</option>
+                <option value="2-Wheeler">2-Wheeler</option>
+                <option value="3-Wheeler">3-Wheeler</option>
                 <option value="4-Wheeler">4-Wheeler</option>
                 <option value="Not sure yet">Not sure yet</option>
               </select>
@@ -1091,7 +1091,7 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:hello@farinimotion.com">hello@farinimotion.com</a></li>
-          <li><a href="tel:+2348000000000">+234 811 368 1325</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
           <li><span>Lagos, Nigeria</span></li>
         </ul>
       </div>
@@ -1213,6 +1213,7 @@
       No backend is wired up here. To actually capture leads, replace this
       block with a fetch() call to a form service such as Formspree,
       Getform, or a Netlify Forms / Google Sheets endpoint, e.g.:
+
     */
 
       fetch('https://formspree.io/f/xgojebqg', {
@@ -1220,7 +1221,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, phone, vehicleType, ... })
       });
-    
+   
 
     form.classList.add('hidden');
     successBox.classList.add('show');
