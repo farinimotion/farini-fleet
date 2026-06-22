@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farini Motion — Own an EV. Earn from it.</title>
+<meta name="description" content="Invest in electric 2, 3, and 4-wheelers. Farini Motion sources the vehicle, vets the driver, and runs the fleet — you earn the returns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-base:#0A1410;
+    --bg-surface:#11201A;
+    --bg-surface-2:#16271F;
+    --bg-surface-3:#1B2E25;
+    --green-deep:#1F4A36;
+    --green-line:#2C5B44;
+    --amber:#FFB23E;
+    --amber-dim:#8A6326;
+    --mint:#46E0B0;
+    --text-primary:#F4F7F2;
+    --text-muted:#9FB3A8;
+    --text-faint:#6B8276;
+    --danger:#FF8B6B;
+
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+
+    --container:1180px;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:8px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-base);
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;}
+  h1,h2,h3,h4{font-family:var(--font-display);margin:0;line-height:1.1;font-weight:600;}
+  p{margin:0;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
+
+  .container{
+    width:100%;
+    max-width:var(--container);
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+
+  /* ---------- Type utilities ---------- */
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--mint);
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:var(--mint);
+    box-shadow:0 0 0 0 rgba(70,224,176,.5);
+    animation:pulse-dot 2.2s infinite;
+  }
+  @keyframes pulse-dot{
+    0%{box-shadow:0 0 0 0 rgba(70,224,176,.45);}
+    70%{box-shadow:0 0 0 7px rgba(70,224,176,0);}
+    100%{box-shadow:0 0 0 0 rgba(70,224,176,0);}
+  }
+  .section-heading{
+    font-size:clamp(28px,4vw,42px);
+    letter-spacing:-0.01em;
+    max-width:680px;
+  }
+  .section-sub{
+    color:var(--text-muted);
+    max-width:560px;
+    margin-top:14px;
+    font-size:16px;
+  }
+  .section-head{
+    margin-bottom:48px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space:nowrap;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{
+    background:var(--amber);
+    color:#15110A;
+  }
+  .btn-primary:hover{background:#ffc164;}
+  .btn-outline{
+    background:transparent;
+    border-color:var(--green-line);
+    color:var(--text-primary);
+  }
+  .btn-outline:hover{border-color:var(--mint);color:var(--mint);}
+  .btn-block{width:100%;}
+  .btn-sm{padding:10px 18px;font-size:14px;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(10,20,16,.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:-0.01em;
+  }
+  .logo-mark{
+    width:34px;height:34px;
+    border-radius:10px;
+    background:var(--green-deep);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .logo-mark svg{width:17px;height:17px;}
+  .logo span{color:var(--text-muted);font-weight:500;}
+
+  .nav-links{
+    display:none;
+    align-items:center;
+    gap:36px;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--text-muted);
+  }
+  .nav-links a{transition:color .2s ease;}
+  .nav-links a:hover{color:var(--text-primary);}
+  .nav-cta{display:none;}
+  .nav-burger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;height:42px;
+    border-radius:10px;
+    border:1px solid var(--green-line);
+    background:transparent;
+    color:var(--text-primary);
+  }
+  .nav-burger svg{width:18px;height:18px;}
+
+  .mobile-menu{
+    position:fixed;
+    top:76px;left:0;right:0;
+    background:var(--bg-surface);
+    border-bottom:1px solid var(--green-line);
+    padding:18px 24px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    transform:translateY(-8px);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .2s ease, transform .2s ease, visibility .2s;
+    z-index:99;
+  }
+  .mobile-menu.open{opacity:1;transform:translateY(0);visibility:visible;}
+  .mobile-menu a{font-size:15.5px;color:var(--text-muted);padding:6px 0;}
+  .mobile-menu a:hover{color:var(--text-primary);}
+
+  @media (min-width:880px){
+    .nav-links{display:flex;}
+    .nav-cta{display:inline-flex;}
+    .nav-burger{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:148px 0 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-160px;right:-160px;
+    width:480px;height:480px;
+    background:radial-gradient(circle, rgba(70,224,176,.16), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    text-align:left;
+  }
+  .hero h1{
+    font-size:clamp(34px,6vw,64px);
+    letter-spacing:-0.015em;
+    max-width:760px;
+  }
+  .hero-sub{
+    margin-top:22px;
+    font-size:clamp(16px,2vw,19px);
+    color:var(--text-muted);
+    max-width:520px;
+  }
+  .hero-ctas{
+    margin-top:34px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+
+  /* hero route diagram */
+  .route{
+    margin-top:64px;
+    position:relative;
+    padding:34px 18px 26px;
+    border:1px solid var(--green-line);
+    border-radius:var(--radius-lg);
+    background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+  }
+  .route-path{
+    position:relative;
+    height:2px;
+    margin:0 6%;
+    background:var(--green-line);
+  }
+  .route-path-fill{
+    position:absolute;inset:0;
+    background-image:linear-gradient(90deg, var(--mint) 0 10px, transparent 10px 22px);
+    background-size:22px 2px;
+    background-repeat:repeat-x;
+    animation:dash-move 1.8s linear infinite;
+  }
+  @keyframes dash-move{ to{ background-position:22px 0; } }
+  .route-stops{
+    display:flex;
+    justify-content:space-between;
+    margin:0 6%;
+    transform:translateY(-19px);
+  }
+  .route-stop{
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    text-align:center;
+  }
+  .route-icon{
+    width:54px;height:54px;
+    border-radius:50%;
+    background:var(--bg-surface-2);
+    border:1px solid var(--green-line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--amber);
+  }
+  .route-icon svg{width:26px;height:26px;}
+  .route-stop .label{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:.08em;
+    color:var(--text-muted);
+    text-transform:uppercase;
+  }
+
+  /* ---------- Ticker ---------- */
+  .ticker-wrap{
+    margin-top:56px;
+    border-top:1px solid var(--green-line);
+    border-bottom:1px solid var(--green-line);
+    background:var(--bg-surface);
+    overflow:hidden;
+    position:relative;
+  }
+  .ticker-wrap::before,.ticker-wrap::after{
+    content:"";
+    position:absolute;top:0;bottom:0;width:60px;z-index:2;
+    pointer-events:none;
+  }
+  .ticker-wrap::before{left:0;background:linear-gradient(90deg, var(--bg-surface), transparent);}
+  .ticker-wrap::after{right:0;background:linear-gradient(270deg, var(--bg-surface), transparent);}
+  .ticker-track{
+    display:flex;
+    width:max-content;
+    animation:ticker-scroll 38s linear infinite;
+  }
+  .ticker-wrap:hover .ticker-track{animation-play-state:paused;}
+  @keyframes ticker-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .ticker-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 28px;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--text-muted);
+    white-space:nowrap;
+    border-right:1px solid var(--green-line);
+  }
+  .ticker-id{color:var(--text-primary);font-weight:500;}
+  .status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .status-earning{background:var(--mint);}
+  .status-charging{background:var(--amber);}
+  .status-route{background:#6FA8FF;}
+  .ticker-amount{color:var(--amber);}
+
+  /* ---------- Generic section spacing ---------- */
+  .section{
+    padding:96px 0;
+  }
+  .section-tight{padding:72px 0;}
+  .bg-surface{background:var(--bg-surface);}
+
+  /* ---------- Why cards ---------- */
+  .grid-3{
+    display:grid;
+    gap:22px;
+    grid-template-columns:1fr;
+  }
+  @media (min-width:760px){ .grid-3{grid-template-columns:repeat(3,1fr);} }
+
+  .card{
+    background:var(--bg-surface);
+    border:1px solid var(--green-line);
+    border-radius:var(--radius-lg);
+    padding:30px 26px;
+  }
+  .card-icon{
+    width:46px;height:46px;
+    border-radius:12px;
+    background:var(--bg-surface-3);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--mint);
+    margin-bottom:20px;
+  }
+  .card-icon svg{width:22px;height:22px;}
+  .card h3{font-size:19px;margin-bottom:10px;}
+  .card p{color:var(--text-muted);font-size:15px;}
+
+  /* ---------- How it works ---------- */
+  .steps{
+    display:grid;
+    gap:0;
+    grid-template-columns:1fr;
+    border-top:1px solid var(--green-line);
+  }
+  .step{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:20px;
+    padding:30px 0;
+    border-bottom:1px solid var(--green-line);
+    align-items:start;
+  }
+  .step-num{
+    font-family:var(--font-mono);
+    color:var(--amber);
+    font-size:14px;
+    letter-spacing:.06em;
+    padding-top:3px;
+  }
+  .step h3{font-size:19px;margin-bottom:8px;}
+  .step p{color:var(--text-muted);font-size:15px;max-width:560px;}
+
+  /* ---------- Vehicle cards ---------- */
+  .vehicle-card{
+    background:var(--bg-surface);
+    border:1px solid var(--green-line);
+    border-radius:var(--radius-lg);
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  .vehicle-visual{
+    height:160px;
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 30% 20%, rgba(70,224,176,.12), transparent 60%), var(--bg-surface-2);
+    color:var(--amber);
+    border-bottom:1px solid var(--green-line);
+  }
+  .vehicle-visual svg{width:64px;height:64px;}
+  .vehicle-body{padding:26px;display:flex;flex-direction:column;gap:14px;flex:1;}
+  .vehicle-tag{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--mint);
+  }
+  .vehicle-body h3{font-size:21px;}
+  .vehicle-body p.desc{color:var(--text-muted);font-size:14.5px;}
+  .vehicle-price{
+    font-family:var(--font-mono);
+    font-size:20px;
+    color:var(--text-primary);
+    margin-top:auto;
+  }
+  .vehicle-price span{display:block;font-size:11px;color:var(--text-faint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
+  .vehicle-use{
+    font-size:13.5px;
+    color:var(--text-muted);
+    padding-top:14px;
+    border-top:1px solid var(--green-line);
+  }
+  .vehicle-use b{color:var(--text-primary);font-weight:600;}
+
+  /* ---------- Trust grid ---------- */
+  .trust-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1px;
+    background:var(--green-line);
+    border:1px solid var(--green-line);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  @media (min-width:680px){ .trust-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (min-width:1000px){ .trust-grid{grid-template-columns:repeat(3,1fr);} }
+  .trust-item{
+    background:var(--bg-surface);
+    padding:28px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .trust-item .card-icon{margin-bottom:0;}
+  .trust-item h3{font-size:16.5px;}
+  .trust-item p{color:var(--text-muted);font-size:14px;}
+
+  /* ---------- Form ---------- */
+  .invest-wrap{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+  @media (min-width:900px){ .invest-wrap{grid-template-columns:0.85fr 1.15fr;align-items:start;} }
+  .invest-form{
+    background:var(--bg-surface);
+    border:1px solid var(--green-line);
+    border-radius:var(--radius-lg);
+    padding:32px;
+  }
+  .field{margin-bottom:20px;}
+  .field label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+    color:var(--text-primary);
+  }
+  .field .req{color:var(--amber);}
+  .field input,.field select,.field textarea{
+    width:100%;
+    background:var(--bg-surface-2);
+    border:1px solid var(--green-line);
+    border-radius:var(--radius-sm);
+    padding:13px 14px;
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    font-size:15px;
+    transition:border-color .2s ease;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    border-color:var(--mint);
+    outline:none;
+  }
+  .field textarea{resize:vertical;min-height:90px;}
+  .field-error{
+    font-size:12.5px;
+    color:var(--danger);
+    margin-top:6px;
+    display:none;
+  }
+  .field.invalid input,.field.invalid select{border-color:var(--danger);}
+  .field.invalid .field-error{display:block;}
+  .field-row{display:grid;grid-template-columns:1fr;gap:16px;}
+  @media (min-width:540px){ .field-row{grid-template-columns:1fr 1fr;} }
+
+  .form-note{
+    margin-top:14px;
+    font-size:12.5px;
+    color:var(--text-faint);
+    text-align:center;
+  }
+
+  .success-box{
+    display:none;
+    text-align:center;
+    padding:50px 30px;
+  }
+  .success-box.show{display:block;}
+  .invest-form.hidden{display:none;}
+  .success-icon{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:rgba(70,224,176,.14);
+    color:var(--mint);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 20px;
+  }
+  .success-icon svg{width:26px;height:26px;}
+  .success-box h3{font-size:21px;margin-bottom:10px;}
+  .success-box p{color:var(--text-muted);font-size:15px;max-width:360px;margin:0 auto 22px;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{border-top:1px solid var(--green-line);}
+  .faq-item{border-bottom:1px solid var(--green-line);}
+  .faq-item summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:24px 4px;
+    font-family:var(--font-display);
+    font-size:17px;
+    font-weight:600;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-chevron{
+    flex-shrink:0;
+    width:30px;height:30px;
+    border-radius:50%;
+    border:1px solid var(--green-line);
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .25s ease, background .2s ease;
+  }
+  .faq-chevron svg{width:13px;height:13px;}
+  .faq-item[open] .faq-chevron{transform:rotate(45deg);background:var(--green-deep);}
+  .faq-answer{
+    padding:0 4px 24px;
+    color:var(--text-muted);
+    font-size:15px;
+    max-width:680px;
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer{
+    background:var(--bg-surface);
+    border-top:1px solid var(--green-line);
+    padding:64px 0 28px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+    padding-bottom:40px;
+  }
+  @media (min-width:760px){ .footer-grid{grid-template-columns:1.3fr 1fr 1fr;} }
+  .footer-tagline{color:var(--text-muted);font-size:14.5px;margin-top:14px;max-width:260px;}
+  .footer-col h4{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    margin-bottom:18px;
+  }
+  .footer-col ul{display:flex;flex-direction:column;gap:12px;}
+  .footer-col a{color:var(--text-muted);font-size:14.5px;}
+  .footer-col a:hover{color:var(--text-primary);}
+  .social-row{display:flex;gap:10px;margin-top:20px;}
+  .social-row a{
+    width:36px;height:36px;
+    border-radius:50%;
+    border:1px solid var(--green-line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-muted);
+  }
+  .social-row a:hover{color:var(--mint);border-color:var(--mint);}
+  .social-row svg{width:16px;height:16px;}
+  .footer-bottom{
+    border-top:1px solid var(--green-line);
+    padding-top:26px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    font-size:13px;
+    color:var(--text-faint);
+  }
+  @media (min-width:760px){
+    .footer-bottom{flex-direction:row;justify-content:space-between;}
+  }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    .ticker-track{animation:none;}
+    .route-path-fill{animation:none;}
+    .eyebrow::before{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SVG SPRITE ============ -->
+<svg class="visually-hidden" aria-hidden="true">
+  <symbol id="icon-bike" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <circle cx="5.5" cy="17.5" r="3"/><circle cx="18.5" cy="17.5" r="3"/>
+    <path d="M5.5 17.5 9 10h4l3 4.5h2.5M9 10l-1.5-3h-2M13 10l2 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14.5 5.5 16 7" stroke-linecap="round"/>
+    <path d="M14 4 12.5 7 15 6.5 13.5 9.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-keke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M3 17.5h2M21 17.5h-3" stroke-linecap="round"/>
+    <circle cx="6.5" cy="17.5" r="2.2"/><circle cx="16.5" cy="17.5" r="2.2"/>
+    <path d="M8.5 17.5V9.5a1 1 0 0 1 1-1H15a2 2 0 0 1 2 2v7" stroke-linejoin="round"/>
+    <path d="M9 9.5h7M9.5 6.5h3l1 2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M4 16.5v-3l1.6-4A2 2 0 0 1 7.5 8h9a2 2 0 0 1 1.9 1.5l1.6 4v3" stroke-linejoin="round"/>
+    <circle cx="7.5" cy="16.5" r="2"/><circle cx="16.5" cy="16.5" r="2"/>
+    <path d="M4 13.5h16M9 8l-.8 3.5h7.6L15 8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+    <path d="M13 3 5.5 13.5h5L11 21l7.5-10.5h-5L13 3Z" stroke-linejoin="round" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <circle cx="12" cy="12" r="3.2"/>
+    <path d="M12 3.5v2.3M12 18.2v2.3M5.6 6.4l1.6 1.6M16.8 16l1.6 1.6M3.5 12h2.3M18.2 12h2.3M5.6 17.6l1.6-1.6M16.8 8l1.6-1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M3.5 16.5 9 11l4 3 7.5-8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16.5 6h4v4" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M12 21s7-6.4 7-11.5A7 7 0 0 0 5 9.5C5 14.6 12 21 12 21Z" stroke-linejoin="round"/>
+    <circle cx="12" cy="9.5" r="2.3"/>
+  </symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M12 3.5 19 6.3v5.4c0 5-3.1 7.9-7 9-3.9-1.1-7-4-7-9V6.3L12 3.5Z" stroke-linejoin="round"/>
+    <path d="M9.2 12.1l1.9 1.9 3.7-3.9" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-user-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <circle cx="10" cy="8.3" r="3.3"/>
+    <path d="M4 20c0-3.5 2.7-6 6-6s6 2.5 6 6" stroke-linecap="round"/>
+    <path d="M16.5 13.5l1.6 1.6 3-3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <rect x="3.5" y="6.5" width="17" height="12" rx="2.2"/>
+    <path d="M3.5 10.5h17M15.5 14.2h2.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M14.7 9.3a3.4 3.4 0 0 1-4.6-4.6L6 8.8l9.2 9.2 4.1-4.1-4.6-4.6Z" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M5.2 18.8l1.6-1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M5 12.5 10 17l9-10" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M5 5l14 14M19 5 5 19" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r="1"/>
+  </symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M4.5 4.5l15 15M19.5 4.5l-15 15" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+    <path d="M7.7 10.2v6M7.7 7.6v.05M11.3 16.2v-3.6c0-1.4 1-2.3 2.2-2.3 1.2 0 2 .9 2 2.3v3.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M14.5 8.5h2V5.7h-2.3c-2 0-3.2 1.3-3.2 3.4v1.6H9v2.8h2v6.5h2.9v-6.5h2.2l.4-2.8h-2.6V9.4c0-.6.3-.9.9-.9Z" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark"><svg><use href="#icon-bolt"/></svg></span>
+      Farini<span>&nbsp;Motion</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#vehicles">Vehicles</a>
+      <a href="#trust">Why Invest</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#invest" class="btn btn-primary btn-sm nav-cta">Get Started</a>
+    <button class="nav-burger" id="burgerBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg id="burgerIcon"><use href="#icon-menu"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#trust">Why Invest</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="#invest" class="btn btn-primary btn-block">Get Started</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="eyebrow">Live fleet — 2W / 3W / 4W</span>
+      <h1>Own an EV. Earn from it.<br>We manage the rest.</h1>
+      <p class="hero-sub">Invest in electric two-, three-, and four-wheelers. We source the vehicle, vet the driver, and run the fleet — you collect the returns.</p>
+      <div class="hero-ctas">
+        <a href="#invest" class="btn btn-primary">Request to Invest</a>
+        <a href="#how-it-works" class="btn btn-outline">How It Works</a>
+      </div>
+
+      <div class="route reveal">
+        <div class="route-path"><div class="route-path-fill"></div></div>
+        <div class="route-stops">
+          <div class="route-stop">
+            <span class="route-icon"><svg><use href="#icon-bike"/></svg></span>
+            <span class="label">2-Wheeler</span>
+          </div>
+          <div class="route-stop">
+            <span class="route-icon"><svg><use href="#icon-keke"/></svg></span>
+            <span class="label">3-Wheeler</span>
+          </div>
+          <div class="route-stop">
+            <span class="route-icon"><svg><use href="#icon-car"/></svg></span>
+            <span class="label">4-Wheeler</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fleet ticker -->
+    <div class="ticker-wrap" role="presentation" aria-hidden="true">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+  </section>
+
+  <!-- ============ WHY EV FLEET INVESTING ============ -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why EV fleet investing</span>
+        <h2 class="section-heading">The math works. The mission matters.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal">
+          <span class="card-icon"><svg><use href="#icon-bolt"/></svg></span>
+          <h3>Lower running costs</h3>
+          <p>No fuel and far less maintenance than petrol vehicles — so more of what the vehicle earns reaches you as a return.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg><use href="#icon-gear"/></svg></span>
+          <h3>Full operations, handled</h3>
+          <p>Sourcing, financing, driver vetting, tracking, and servicing. We run the fleet day to day so you don't have to.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon"><svg><use href="#icon-trend"/></svg></span>
+          <h3>Demand keeps climbing</h3>
+          <p>Ride-hailing and last-mile delivery are scaling fast, and electric vehicles are the cheapest way to move people and goods.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section bg-surface" id="how-it-works">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-heading">From sign-up to steady returns.</h2>
+        <p class="section-sub">Four steps stand between your first naira and a vehicle earning on the road.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step-num">01 / 04</span>
+          <div>
+            <h3>Sign up & choose your category</h3>
+            <p>Tell us whether you want a 2-wheeler, 3-wheeler, or 4-wheeler — or let our team recommend one based on your budget.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">02 / 04</span>
+          <div>
+            <h3>We match you with a vehicle</h3>
+            <p>Our team reviews your investment request and sources a vehicle that fits your budget and timeline.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">03 / 04</span>
+          <div>
+            <h3>A vetted driver joins the fleet</h3>
+            <p>We screen, train, and assign a driver, then bring the vehicle into our managed fleet under live tracking.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">04 / 04</span>
+          <div>
+            <h3>You track returns on your dashboard</h3>
+            <p>Watch performance build as the vehicle goes to work, and receive your earnings on a fixed schedule.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VEHICLES ============ -->
+  <section class="section" id="vehicles">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Choose your vehicle</span>
+        <h2 class="section-heading">Three ways to put your money in motion.</h2>
+      </div>
+      <div class="grid-3">
+
+        <div class="vehicle-card reveal">
+          <div class="vehicle-visual"><svg><use href="#icon-bike"/></svg></div>
+          <div class="vehicle-body">
+            <span class="vehicle-tag">2-Wheeler</span>
+            <h3>E-bikes & scooters</h3>
+            <p class="desc">Electric bikes and scooters built for quick, last-mile delivery runs.</p>
+            <p class="vehicle-price"><span>Indicative price</span>From ₦650,000</p>
+            <p class="vehicle-use">Best for: <b>Last-mile delivery</b></p>
+            <a href="#invest" class="btn btn-outline btn-block btn-sm">Request to Invest</a>
+          </div>
+        </div>
+
+        <div class="vehicle-card reveal">
+          <div class="vehicle-visual"><svg><use href="#icon-keke"/></svg></div>
+          <div class="vehicle-body">
+            <span class="vehicle-tag">3-Wheeler</span>
+            <h3>E-tricycles (Keke)</h3>
+            <p class="desc">Electric tricycles running keke routes and short-haul passenger transport.</p>
+            <p class="vehicle-price"><span>Indicative price</span>From ₦1,800,000</p>
+            <p class="vehicle-use">Best for: <b>Keke & tricycle transport</b></p>
+            <a href="#invest" class="btn btn-outline btn-block btn-sm">Request to Invest</a>
+          </div>
+        </div>
+
+        <div class="vehicle-card reveal">
+          <div class="vehicle-visual"><svg><use href="#icon-car"/></svg></div>
+          <div class="vehicle-body">
+            <span class="vehicle-tag">4-Wheeler</span>
+            <h3>Electric cars</h3>
+            <p class="desc">Electric cars built for ride-hailing and longer-distance trips.</p>
+            <p class="vehicle-price"><span>Indicative price</span>From ₦9,500,000</p>
+            <p class="vehicle-use">Best for: <b>Ride-hailing</b></p>
+            <a href="#invest" class="btn btn-outline btn-block btn-sm">Request to Invest</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST / FLEET MANAGEMENT ============ -->
+  <section class="section bg-surface" id="trust">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">What we handle</span>
+        <h2 class="section-heading">You hold the asset. We run the operation.</h2>
+      </div>
+      <div class="trust-grid reveal">
+        <div class="trust-item">
+          <span class="card-icon"><svg><use href="#icon-pin"/></svg></span>
+          <h3>Vehicle sourcing</h3>
+          <p>We source and procure the right EV for your category and budget.</p>
+        </div>
+        <div class="trust-item">
+          <span class="card-icon"><svg><use href="#icon-user-check"/></svg></span>
+          <h3>Driver vetting</h3>
+          <p>Every driver is background-checked, trained, and monitored on the job.</p>
+        </div>
+        <div class="trust-item">
+          <span class="card-icon"><svg><use href="#icon-pin"/></svg></span>
+          <h3>Live tracking</h3>
+          <p>GPS tracking gives full visibility into vehicle location and usage.</p>
+        </div>
+        <div class="trust-item">
+          <span class="card-icon"><svg><use href="#icon-wrench"/></svg></span>
+          <h3>Maintenance</h3>
+          <p>Scheduled servicing keeps the vehicle earning instead of sitting idle.</p>
+        </div>
+        <div class="trust-item">
+          <span class="card-icon"><svg><use href="#icon-shield"/></svg></span>
+          <h3>Insurance</h3>
+          <p>Vehicles in the fleet are insured against accident and damage.</p>
+        </div>
+        <div class="trust-item">
+          <span class="card-icon"><svg><use href="#icon-wallet"/></svg></span>
+          <h3>Earnings remittance</h3>
+          <p>Returns are calculated and paid out to you on a fixed schedule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INVEST FORM ============ -->
+  <section class="section" id="invest">
+    <div class="container invest-wrap">
+      <div class="reveal">
+        <span class="eyebrow">Request to invest</span>
+        <h2 class="section-heading">Tell us what you want to invest in.</h2>
+        <p class="section-sub">Share a few details and our team will follow up within 48 hours with vehicle availability and next steps.</p>
+      </div>
+
+      <div class="reveal">
+        <form class="invest-form" id="investForm" novalidate>
+          <div class="field" id="field-name">
+            <label for="fullName">Full name <span class="req">*</span></label>
+            <input type="text" id="fullName" name="fullName" autocomplete="name" required>
+            <p class="field-error">Enter your full name.</p>
+          </div>
+
+          <div class="field-row">
+            <div class="field" id="field-email">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+              <p class="field-error">Enter a valid email address.</p>
+            </div>
+            <div class="field" id="field-phone">
+              <label for="phone">Phone number <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+              <p class="field-error">Enter a valid phone number.</p>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field" id="field-vehicle">
+              <label for="vehicleType">Vehicle type <span class="req">*</span></label>
+              <select id="vehicleType" name="vehicleType" required>
+                <option value="">Select an option</option>
+                <option value="2-Wheeler">2-Wheeler</option>
+                <option value="3-Wheeler">3-Wheeler</option>
+                <option value="4-Wheeler">4-Wheeler</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+              <p class="field-error">Choose a vehicle type.</p>
+            </div>
+            <div class="field" id="field-amount">
+              <label for="amount">Intended investment</label>
+              <select id="amount" name="amount">
+                <option value="">Select a range</option>
+                <option value="Under ₦1,000,000">Under ₦1,000,000</option>
+                <option value="₦1,000,000 – ₦5,000,000">₦1,000,000 – ₦5,000,000</option>
+                <option value="₦5,000,000 – ₦10,000,000">₦5,000,000 – ₦10,000,000</option>
+                <option value="Above ₦10,000,000">Above ₦10,000,000</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field" id="field-message">
+            <label for="message">Message / notes</label>
+            <textarea id="message" name="message" placeholder="Anything you'd like our team to know"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Request to Invest</button>
+          <p class="form-note">No payment is collected here — this only sends your request to our team.</p>
+        </form>
+
+        <div class="success-box" id="successBox">
+          <span class="success-icon"><svg><use href="#icon-check"/></svg></span>
+          <h3>Request received</h3>
+          <p>Thanks — our team will reach out within 48 hours with vehicle availability and next steps.</p>
+          <button class="btn btn-outline" id="resetFormBtn">Submit another request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section bg-surface" id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-heading">Questions investors ask us first.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>How do returns work?<span class="faq-chevron"><svg><use href="#icon-plus"/></svg></span></summary>
+          <div class="faq-answer">Each vehicle category has an indicative return profile based on projected daily usage. Once your vehicle joins the fleet and is assigned a driver, we track its income and remit your share on a fixed schedule.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Who drives the vehicle?<span class="faq-chevron"><svg><use href="#icon-plus"/></svg></span></summary>
+          <div class="faq-answer">A driver vetted and trained by our team. Drivers are background-checked, onboarded against our service standards, and monitored for performance while operating fleet vehicles.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What happens if the vehicle is damaged?<span class="faq-chevron"><svg><use href="#icon-plus"/></svg></span></summary>
+          <div class="faq-answer">Fleet vehicles are insured against accident and damage. If an incident occurs, our operations team handles the claim and repair, and keeps you informed throughout.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I choose my own driver?<span class="faq-chevron"><svg><use href="#icon-plus"/></svg></span></summary>
+          <div class="faq-answer">Drivers are assigned by our vetting team to keep quality and accountability consistent across the fleet. You're welcome to refer a candidate, and we'll run them through the same screening process.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How long is the investment period?<span class="faq-chevron"><svg><use href="#icon-plus"/></svg></span></summary>
+          <div class="faq-answer">Terms vary by vehicle category and are confirmed with you before your vehicle joins the fleet. Our team will walk you through the specific timeline that applies to your investment.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is my investment insured?<span class="faq-chevron"><svg><use href="#icon-plus"/></svg></span></summary>
+          <div class="faq-answer">The vehicle itself is insured against accident and damage. As with any income-generating asset, returns depend on usage and are not guaranteed — our team can walk you through the specifics.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="logo">
+          <span class="logo-mark"><svg><use href="#icon-bolt"/></svg></span>
+          Farini<span>&nbsp;Motion</span>
+        </a>
+        <p class="footer-tagline">Electric fleets. Real returns.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg><use href="#icon-instagram"/></svg></a>
+          <a href="#" aria-label="X (Twitter)"><svg><use href="#icon-x"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg><use href="#icon-linkedin"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg><use href="#icon-facebook"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#vehicles">Vehicles</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#invest">Request to Invest</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@farinimotion.com">hello@farinimotion.com</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+          <li><span>Lagos, Nigeria</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Farini Motion. All rights reserved.</span>
+      <span>Returns are indicative and not guaranteed. Terms apply.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Mobile menu ---------- */
+  var burgerBtn = document.getElementById('burgerBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var burgerIcon = document.getElementById('burgerIcon');
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded','false');
+    burgerIcon.innerHTML = '<use href="#icon-menu"/>';
+  }
+  burgerBtn.addEventListener('click', function(){
+    var isOpen = mobileMenu.classList.toggle('open');
+    burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    burgerIcon.innerHTML = isOpen ? '<use href="#icon-close"/>' : '<use href="#icon-menu"/>';
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  } else {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ observer.observe(el); });
+  }
+
+  /* ---------- Fleet ticker (mock telemetry) ---------- */
+  var fleetData = [
+    {id:'KEKE-014', area:'Lagos Island', status:'earning', detail:'₦4,200 today'},
+    {id:'BIKE-027', area:'Ikeja', status:'charging', detail:'82% charged'},
+    {id:'CAR-009', area:'Lekki', status:'route', detail:'₦11,500 today'},
+    {id:'BIKE-041', area:'Yaba', status:'earning', detail:'₦2,950 today'},
+    {id:'KEKE-022', area:'Ajah', status:'route', detail:'On trip'},
+    {id:'CAR-003', area:'Victoria Island', status:'earning', detail:'₦9,800 today'},
+    {id:'BIKE-016', area:'Surulere', status:'charging', detail:'64% charged'},
+    {id:'KEKE-031', area:'Apapa', status:'earning', detail:'₦3,600 today'}
+  ];
+  var statusLabel = { earning:'EARNING', charging:'CHARGING', route:'ON ROUTE' };
+  var statusClass = { earning:'status-earning', charging:'status-charging', route:'status-route' };
+
+  function buildTickerHTML(){
+    return fleetData.map(function(v){
+      return '<span class="ticker-item">' +
+        '<span class="status-dot ' + statusClass[v.status] + '"></span>' +
+        '<span class="ticker-id">' + v.id + '</span>' +
+        '<span>' + v.area + '</span>' +
+        '<span>' + statusLabel[v.status] + '</span>' +
+        '<span class="ticker-amount">' + v.detail + '</span>' +
+      '</span>';
+    }).join('');
+  }
+  var track = document.getElementById('tickerTrack');
+  // duplicate content for seamless marquee loop
+  track.innerHTML = buildTickerHTML() + buildTickerHTML();
+
+  /* ---------- Form validation + mock submit ---------- */
+  var form = document.getElementById('investForm');
+  var successBox = document.getElementById('successBox');
+  var resetBtn = document.getElementById('resetFormBtn');
+
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var phoneRe = /^[\d+\-\s()]{7,20}$/;
+
+  function setInvalid(fieldId, isInvalid){
+    var field = document.getElementById(fieldId);
+    field.classList.toggle('invalid', isInvalid);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('fullName').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var vehicleType = document.getElementById('vehicleType').value;
+
+    var nameValid = name.length > 1;
+    var emailValid = emailRe.test(email);
+    var phoneValid = phoneRe.test(phone);
+    var vehicleValid = vehicleType !== '';
+
+    setInvalid('field-name', !nameValid);
+    setInvalid('field-email', !emailValid);
+    setInvalid('field-phone', !phoneValid);
+    setInvalid('field-vehicle', !vehicleValid);
+
+    if (!(nameValid && emailValid && phoneValid && vehicleValid)) {
+      var firstInvalid = form.querySelector('.invalid input, .invalid select');
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    /*
+      No backend is wired up here. To actually capture leads, replace this
+      block with a fetch() call to a form service such as Formspree,
+      Getform, or a Netlify Forms / Google Sheets endpoint, e.g.:
+
+      fetch('https://formspree.io/f/your-id', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, vehicleType, ... })
+      });
+    */
+
+    form.classList.add('hidden');
+    successBox.classList.add('show');
+    successBox.focus();
+  });
+
+  resetBtn.addEventListener('click', function(){
+    form.reset();
+    ['field-name','field-email','field-phone','field-vehicle'].forEach(function(id){
+      setInvalid(id, false);
+    });
+    successBox.classList.remove('show');
+    form.classList.remove('hidden');
+  });
+
+})();
+</script>
+
+</body>
+</html>
