@@ -971,7 +971,10 @@
             </div>
             <div class="field" id="field-phone">
               <label for="phone">Phone number <span class="req">*</span></label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+              <div class="phone-field">
+               <select id="countryCode" aria-label="Country code"></select>
+               <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="801 234 5678" required>
+              </div>
               <p class="field-error">Enter a valid phone number.</p>
             </div>
           </div>
