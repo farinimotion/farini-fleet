@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,18 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-base:#003d20;
-    --bg-surface:#11201A;
-    --bg-surface-2:#16271F;
-    --bg-surface-3:#1B2E25;
-    --green-deep:#1F4A36;
-    --green-line:#2C5B44;
+    /* Brand Color Palette */
+    --bg-base:#003d20;           /* Primary Logo Dark Green */
+    --bg-surface:#002b17;        /* Deeper shade for cards/containers */
+    --bg-surface-2:#004d29;      /* Lighter background shade for inputs/accents */
+    --bg-surface-3:#005e32;      /* Accent container shade */
+    --green-deep:#003d20;
+    --green-line:#00572e;        /* Subtle green borders */
     --amber:#FFB23E;
     --amber-dim:#8A6326;
     --mint:#46E0B0;
-    --text-primary:#F4F7F2;
-    --text-muted:#9FB3A8;
-    --text-faint:#6B8276;
+    --text-primary:#ffffff;      /* Logo Pure White for crisp contrast */
+    --text-muted:#d1e0d8;        /* Softened white for secondary body text */
+    --text-faint:#8faea0;
     --danger:#FF8B6B;
 
     --font-display:'DM Sans',sans-serif;
@@ -89,6 +90,7 @@
     font-size:clamp(28px,4vw,42px);
     letter-spacing:-0.01em;
     max-width:680px;
+    color:var(--text-primary);
   }
   .section-sub{
     color:var(--text-muted);
@@ -135,9 +137,9 @@
     position:fixed;
     top:0;left:0;right:0;
     z-index:100;
-    background:rgba(10,20,16,.78);
+    background:rgba(0, 61, 32, 0.88);
     backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(255,255,255,.06);
+    border-bottom:1px solid rgba(255,255,255,.12);
   }
   .nav{
     display:flex;
@@ -153,11 +155,17 @@
     font-weight:700;
     font-size:18px;
     letter-spacing:-0.01em;
+    color:var(--text-primary);
+  }
+  .logo-img {
+    height:36px;
+    width:auto;
+    display:block;
   }
   .logo-mark{
     width:34px;height:34px;
     border-radius:10px;
-    background:var(--green-deep);
+    background:var(--bg-surface-3);
     display:flex;align-items:center;justify-content:center;
     flex-shrink:0;
   }
@@ -217,6 +225,7 @@
     padding:148px 0 0;
     position:relative;
     overflow:hidden;
+    background: radial-gradient(circle at 50% 0%, #00572e 0%, #003d20 70%);
   }
   .hero::before{
     content:"";
@@ -235,6 +244,7 @@
     font-size:clamp(34px,6vw,64px);
     letter-spacing:-0.015em;
     max-width:760px;
+    color:var(--text-primary);
   }
   .hero-sub{
     margin-top:22px;
@@ -256,7 +266,7 @@
     padding:34px 18px 26px;
     border:1px solid var(--green-line);
     border-radius:var(--radius-lg);
-    background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+    background:linear-gradient(180deg, rgba(255,255,255,.05), transparent);
   }
   .route-path{
     position:relative;
@@ -373,7 +383,7 @@
     margin-bottom:20px;
   }
   .card-icon svg{width:22px;height:22px;}
-  .card h3{font-size:19px;margin-bottom:10px;}
+  .card h3{font-size:19px;margin-bottom:10px;color:var(--text-primary);}
   .card p{color:var(--text-muted);font-size:15px;}
 
   /* ---------- How it works ---------- */
@@ -398,10 +408,10 @@
     letter-spacing:.06em;
     padding-top:3px;
   }
-  .step h3{font-size:19px;margin-bottom:8px;}
+  .step h3{font-size:19px;margin-bottom:8px;color:var(--text-primary);}
   .step p{color:var(--text-muted);font-size:15px;max-width:560px;}
 
-  /* ---------- Vehicle cards ---------- */
+  /* ---------- Vehicle cards & Display Image Styling ---------- */
   .vehicle-card{
     background:var(--bg-surface);
     border:1px solid var(--green-line);
@@ -412,13 +422,21 @@
     overflow:hidden;
   }
   .vehicle-visual{
-    height:160px;
-    display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle at 30% 20%, rgba(70,224,176,.12), transparent 60%), var(--bg-surface-2);
-    color:var(--amber);
+    height:200px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg-surface-2);
     border-bottom:1px solid var(--green-line);
+    overflow:hidden;
   }
-  .vehicle-visual svg{width:64px;height:64px;}
+  .vehicle-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
   .vehicle-body{padding:26px;display:flex;flex-direction:column;gap:14px;flex:1;}
   .vehicle-tag{
     font-family:var(--font-mono);
@@ -427,7 +445,7 @@
     text-transform:uppercase;
     color:var(--mint);
   }
-  .vehicle-body h3{font-size:21px;}
+  .vehicle-body h3{font-size:21px;color:var(--text-primary);}
   .vehicle-body p.desc{color:var(--text-muted);font-size:14.5px;}
   .vehicle-price{
     font-family:var(--font-mono);
@@ -464,7 +482,7 @@
     gap:14px;
   }
   .trust-item .card-icon{margin-bottom:0;}
-  .trust-item h3{font-size:16.5px;}
+  .trust-item h3{font-size:16.5px;color:var(--text-primary);}
   .trust-item p{color:var(--text-muted);font-size:14px;}
 
   /* ---------- Form ---------- */
@@ -539,7 +557,7 @@
     margin:0 auto 20px;
   }
   .success-icon svg{width:26px;height:26px;}
-  .success-box h3{font-size:21px;margin-bottom:10px;}
+  .success-box h3{font-size:21px;margin-bottom:10px;color:var(--text-primary);}
   .success-box p{color:var(--text-muted);font-size:15px;max-width:360px;margin:0 auto 22px;}
 
   /* ---------- Phone field with country code ---------- */
@@ -580,7 +598,6 @@
 }
 .phone-field input:focus{outline:none;}
 
- 
   /* ---------- FAQ ---------- */
   .faq-list{border-top:1px solid var(--green-line);}
   .faq-item{border-bottom:1px solid var(--green-line);}
@@ -595,6 +612,7 @@
     font-family:var(--font-display);
     font-size:17px;
     font-weight:600;
+    color:var(--text-primary);
   }
   .faq-item summary::-webkit-details-marker{display:none;}
   .faq-chevron{
@@ -606,7 +624,7 @@
     transition:transform .25s ease, background .2s ease;
   }
   .faq-chevron svg{width:13px;height:13px;}
-  .faq-item[open] .faq-chevron{transform:rotate(45deg);background:var(--green-deep);}
+  .faq-item[open] .faq-chevron{transform:rotate(45deg);background:var(--bg-surface-3);}
   .faq-answer{
     padding:0 4px 24px;
     color:var(--text-muted);
@@ -763,7 +781,8 @@
 <header class="site-header">
   <div class="container nav">
     <a href="#top" class="logo">
-      <span class="logo-mark"><svg><use href="#icon-bolt"/></svg></span>
+      <img src="logo.png" alt="Farini Motion Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <span class="logo-mark" style="display:none;"><svg><use href="#icon-bolt"/></svg></span>
       Farini<span>&nbsp;Motion</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
@@ -904,7 +923,9 @@
       <div class="grid-3">
 
         <div class="vehicle-card reveal">
-          <div class="vehicle-visual"><svg><use href="#icon-bike"/></svg></div>
+          <div class="vehicle-visual">
+            <img src="ebike.jpg" alt="Farini Motion Electric Bike / Scooter" onerror="this.onerror=null; this.parentElement.innerHTML='<svg><use href=\'#icon-bike\'/></svg>';">
+          </div>
           <div class="vehicle-body">
             <span class="vehicle-tag">2-Wheeler</span>
             <h3>E-bikes & scooters</h3>
@@ -916,7 +937,9 @@
         </div>
 
         <div class="vehicle-card reveal">
-          <div class="vehicle-visual"><svg><use href="#icon-keke"/></svg></div>
+          <div class="vehicle-visual">
+            <img src="ekeke.jpg" alt="Farini Motion Electric Tricycle (Keke)" onerror="this.onerror=null; this.parentElement.innerHTML='<svg><use href=\'#icon-keke\'/></svg>';">
+          </div>
           <div class="vehicle-body">
             <span class="vehicle-tag">3-Wheeler</span>
             <h3>E-tricycles (Keke)</h3>
@@ -928,7 +951,9 @@
         </div>
 
         <div class="vehicle-card reveal">
-          <div class="vehicle-visual"><svg><use href="#icon-car"/></svg></div>
+          <div class="vehicle-visual">
+            <img src="ecar.jpg" alt="Farini Motion Electric Car" onerror="this.onerror=null; this.parentElement.innerHTML='<svg><use href=\'#icon-car\'/></svg>';">
+          </div>
           <div class="vehicle-body">
             <span class="vehicle-tag">4-Wheeler</span>
             <h3>Electric cars</h3>
@@ -1106,7 +1131,8 @@
     <div class="footer-grid">
       <div>
         <a href="#top" class="logo">
-          <span class="logo-mark"><svg><use href="#icon-bolt"/></svg></span>
+          <img src="logo.png" alt="Farini Motion Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="logo-mark" style="display:none;"><svg><use href="#icon-bolt"/></svg></span>
           Farini<span>&nbsp;Motion</span>
         </a>
         <p class="footer-tagline">Electric fleets. Real returns.</p>
@@ -1133,7 +1159,7 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:hello@farinimotion.com">hello@farinimotion.com</a></li>
-          <li><a href="tel:+2348000000000">+234 811 368 1325</a></li>
+          <li><a href="tel:+2348113681325">+234 811 368 1325</a></li>
           <li><span>Lagos, Nigeria</span></li>
         </ul>
       </div>
@@ -1212,10 +1238,9 @@
     }).join('');
   }
   var track = document.getElementById('tickerTrack');
-  // duplicate content for seamless marquee loop
   track.innerHTML = buildTickerHTML() + buildTickerHTML();
 
-  /* ---------- Form validation + mock submit ---------- */
+  /* ---------- Form validation + submit ---------- */
   var form = document.getElementById('investForm');
   var successBox = document.getElementById('successBox');
   var resetBtn = document.getElementById('resetFormBtn');
@@ -1259,7 +1284,7 @@
   {dial:'+27', flag:'🇿🇦', name:'South Africa'}, {dial:'+82', flag:'🇰🇷', name:'South Korea'},
   {dial:'+34', flag:'🇪🇸', name:'Spain'}, {dial:'+94', flag:'🇱🇰', name:'Sri Lanka'},
   {dial:'+249', flag:'🇸🇩', name:'Sudan'}, {dial:'+46', flag:'🇸🇪', name:'Sweden'},
-  {dial:'+41', flag:'🇨🇭', name:'Switzerland'}, {dial:'+255', flag:'🇹🇿', name:'Tanzania'},
+  {dial:'+41', flag:'🇨🇭', name:'Switzerland'}, {dial:'+255', flag:'🇹ℤ', name:'Tanzania'},
   {dial:'+66', flag:'🇹🇭', name:'Thailand'}, {dial:'+228', flag:'🇹🇬', name:'Togo'},
   {dial:'+216', flag:'🇹🇳', name:'Tunisia'}, {dial:'+90', flag:'🇹🇷', name:'Turkey'},
   {dial:'+256', flag:'🇺🇬', name:'Uganda'}, {dial:'+380', flag:'🇺🇦', name:'Ukraine'},
@@ -1342,21 +1367,11 @@ var submitBtn = form.querySelector('button[type="submit"]');
       });
   });
 
-    /*
-      No backend is wired up here. To actually capture leads, replace this
-      block with a fetch() call to a form service such as Formspree,
-      Getform, or a Netlify Forms / Google Sheets endpoint, e.g.:
-
-   
-
-      fetch('https://formspree.io/f/xgojebqg', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, vehicleType, ... })
-      });
-
-     */
-   
+  resetBtn.addEventListener('click', function(){
+    form.reset();
+    form.classList.remove('hidden');
+    successBox.classList.remove('show');
+  });
 
 })();
 </script>
