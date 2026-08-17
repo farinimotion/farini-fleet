@@ -11,18 +11,18 @@
 <style>
   :root{
     /* Brand Color Palette */
-    --bg-base:#ffffff;           /* Primary Logo Dark Green */
-    --bg-surface:#002b17;        /* Deeper shade for cards/containers */
-    --bg-surface-2:#004d29;      /* Lighter background shade for inputs/accents */
-    --bg-surface-3:#005e32;      /* Accent container shade */
+    --bg-base:#00652f;           /* much brighter main background */
+    --bg-surface:#e8f5ec;        /* light mint-white for cards/containers */
+    --bg-surface-2:#d4eddb;      /* slightly deeper for inputs */
+    --bg-surface-3:#c2e4cc;      /* accent container */
     --green-deep:#003d20;
-    --green-line:#00572e;        /* Subtle green borders */
+    --green-line:#a0ccb0;        /* visible but soft borders */
     --amber:#FFB23E;
     --amber-dim:#8A6326;
     --mint:#46E0B0;
     --text-primary:#ffffff;      /* Logo Pure White for crisp contrast */
-    --text-muted:#d1e0d8;        /* Softened white for secondary body text */
-    --text-faint:#8faea0;
+    --text-muted:#1a3d28;        /* dark green for body text on light cards */
+    --text-faint:#4a7a5e;
     --danger:#FF8B6B;
 
     --font-display:'DM Sans',sans-serif;
@@ -137,7 +137,7 @@
     position:fixed;
     top:0;left:0;right:0;
     z-index:100;
-    background:rgba(0, 61, 32, 0.88);
+    background:rgba(0, 101, 47, 0.92);
     backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,.12);
   }
@@ -695,6 +695,17 @@
     .route-path-fill{animation:none;}
     .eyebrow::before{animation:none;}
   }
+
+  /* Text contrast fix for light containers */
+  .card p, .step p, .trust-item p, .vehicle-body p,
+  .faq-answer, .footer-tagline, .footer-col a,
+  .field label, .form-note {
+    color: var(--text-muted);
+}
+.card h3, .step h3, .trust-item h3, .vehicle-body h3,
+.faq-item summary, .footer-col h4 {
+  color: #002b17;
+}
 </style>
 </head>
 <body>
