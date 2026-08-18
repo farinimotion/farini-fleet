@@ -258,14 +258,7 @@
     flex-wrap:wrap;
     gap:14px;
   }
-   @media (max-width: 860px) {
-    .hero-inner[style] {
-      grid-template-columns: 1fr !important;
-    }
-    .hero-inner[style] > div:last-child {
-      height: 260px !important;
-    }
-  }
+ 
   /* hero route diagram */
   .route{
     margin-top:64px;
@@ -901,20 +894,32 @@ resetDriverBtn.addEventListener('click', function(){
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <span class="eyebrow">Live fleet — 2W / 3W / 4W</span>
-        <h1>Sustainable Transportation<br>for Africa.</h1>
-        <p class="hero-sub">Invest in electric two-, three-, and four-wheelers.<br>We source the vehicle, vet the driver, and run the fleet — you collect the returns.</p>
-        <div class="hero-ctas">
-          <a href="#invest" class="btn btn-primary">Request to Invest</a>
-          <a href="#drive" class="btn btn-outline">Become a Driver</a>
+    <div class="container hero-inner">
+      <span class="eyebrow">Live fleet — 2W / 3W / 4W</span>
+      <h1>Sustainable Transportation<br>for Africa.</h1>
+      <p class="hero-sub">Invest in electric two-, three-, and four-wheelers.<br>We source the vehicle, vet the driver, and run the fleet — you collect the returns.</p>
+      <div class="hero-ctas">
+        <a href="#invest" class="btn btn-primary">Request to Invest</a>
+        <a href="#how-it-works" class="btn btn-outline">How It Works</a>
+      </div>
+
+      <div class="route reveal">
+        <div class="route-path"><div class="route-path-fill"></div></div>
+        <div class="route-stops">
+          <div class="route-stop">
+            <span class="route-icon"><svg><use href="#icon-bike"/></svg></span>
+            <span class="label">e-Bikes</span>
+          </div>
+          <div class="route-stop">
+            <span class="route-icon"><svg><use href="#icon-keke"/></svg></span>
+            <span class="label">e-Trikes</span>
+          </div>
+          <div class="route-stop">
+            <span class="route-icon"><svg><use href="#icon-car"/></svg></span>
+            <span class="label">4-Wheeler</span>
+          </div>
         </div>
       </div>
-      
-    <!-- Fleet ticker -->
-    <div class="ticker-wrap" role="presentation" aria-hidden="true">
-      <div class="ticker-track" id="tickerTrack"></div>
     </div>
   </section>
 
