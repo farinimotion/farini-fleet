@@ -597,79 +597,8 @@
   font-size:15px;
 }
 .phone-field input:focus{outline:none;}
+}
 
-  /* ---------- Driver form ---------- */
-var driverForm = document.getElementById('driverForm');
-var driverSuccessBox = document.getElementById('driverSuccessBox');
-var resetDriverBtn = document.getElementById('resetDriverFormBtn');
-
-/* Populate driver country code dropdown with same list */
-var driverCountrySelect = document.getElementById('driverCountryCode');
-countries.forEach(function(c){
-  var opt = document.createElement('option');
-  opt.value = c.dial;
-  opt.textContent = c.flag + ' ' + c.dial + '  ' + c.name;
-  driverCountrySelect.appendChild(opt);
-});
-
-driverForm.addEventListener('submit', function(e){
-  e.preventDefault();
-  var name    = document.getElementById('driverName').value.trim();
-  var email   = document.getElementById('driverEmail').value.trim();
-  var dialCode = document.getElementById('driverCountryCode').value;
-  var phoneLocal = document.getElementById('driverPhone').value.trim();
-  var phone   = dialCode + ' ' + phoneLocal;
-  var vehicle = document.getElementById('driverVehicle').value;
-  var city    = document.getElementById('driverCity').value.trim();
-
-  var nameValid    = name.length > 1;
-  var emailValid   = emailRe.test(email);
-  var phoneValid   = phoneRe.test(phone);
-  var vehicleValid = vehicle !== '';
-  var cityValid    = city.length > 1;
-
-  document.getElementById('dfield-name').classList.toggle('invalid', !nameValid);
-  document.getElementById('dfield-email').classList.toggle('invalid', !emailValid);
-  document.getElementById('dfield-phone').classList.toggle('invalid', !phoneValid);
-  document.getElementById('dfield-vehicle').classList.toggle('invalid', !vehicleValid);
-
-  if (!(nameValid && emailValid && phoneValid && vehicleValid && cityValid)) return;
-
-  var driverSubmitBtn = driverForm.querySelector('button[type="submit"]');
-  driverSubmitBtn.disabled = true;
-  driverSubmitBtn.textContent = 'Sending...';
-
-  fetch('https://formspree.io/f/xgojebqg', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      formType: 'Driver Application',
-      name: name, email: email, phone: phone,
-      vehiclePreference: vehicle, city: city,
-      license: document.getElementById('driverLicense').value.trim(),
-      notes: document.getElementById('driverMessage').value.trim()
-    })
-  })
-  .then(function(res){
-    if (res.ok) {
-      driverForm.classList.add('hidden');
-      driverSuccessBox.classList.add('show');
-    } else { throw new Error(); }
-  })
-  .catch(function(){
-    alert('Something went wrong. Please try again or email hello@farinimotion.com.');
-  })
-  .finally(function(){
-    driverSubmitBtn.disabled = false;
-    driverSubmitBtn.textContent = 'Apply to Drive';
-  });
-});
-
-resetDriverBtn.addEventListener('click', function(){
-  driverForm.reset();
-  driverForm.classList.remove('hidden');
-  driverSuccessBox.classList.remove('show');
-});
 
   /* ---------- FAQ ---------- */
   .faq-list{border-top:1px solid var(--green-line);}
@@ -1350,7 +1279,7 @@ resetDriverBtn.addEventListener('click', function(){
   });
   mobileMenu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', closeMenu); 
-    <a href="#drive">Drive with Us</a>
+    
   });
 
   /* ---------- Scroll reveal ---------- */
@@ -1397,6 +1326,8 @@ resetDriverBtn.addEventListener('click', function(){
   }
   var track = document.getElementById('tickerTrack');
   track.innerHTML = buildTickerHTML() + buildTickerHTML();
+
+  
 
   /* ---------- Form validation + submit ---------- */
   var form = document.getElementById('investForm');
@@ -1529,6 +1460,79 @@ var submitBtn = form.querySelector('button[type="submit"]');
     successBox.classList.remove('show');
   });
 
+    /* ---------- Driver form ---------- */
+var driverForm = document.getElementById('driverForm');
+var driverSuccessBox = document.getElementById('driverSuccessBox');
+var resetDriverBtn = document.getElementById('resetDriverFormBtn');
+
+/* Populate driver country code dropdown with same list */
+var driverCountrySelect = document.getElementById('driverCountryCode');
+countries.forEach(function(c){
+  var opt = document.createElement('option');
+  opt.value = c.dial;
+  opt.textContent = c.flag + ' ' + c.dial + '  ' + c.name;
+  driverCountrySelect.appendChild(opt);
+});
+
+driverForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  var name    = document.getElementById('driverName').value.trim();
+  var email   = document.getElementById('driverEmail').value.trim();
+  var dialCode = document.getElementById('driverCountryCode').value;
+  var phoneLocal = document.getElementById('driverPhone').value.trim();
+  var phone   = dialCode + ' ' + phoneLocal;
+  var vehicle = document.getElementById('driverVehicle').value;
+  var city    = document.getElementById('driverCity').value.trim();
+
+  var nameValid    = name.length > 1;
+  var emailValid   = emailRe.test(email);
+  var phoneValid   = phoneRe.test(phone);
+  var vehicleValid = vehicle !== '';
+  var cityValid    = city.length > 1;
+
+  document.getElementById('dfield-name').classList.toggle('invalid', !nameValid);
+  document.getElementById('dfield-email').classList.toggle('invalid', !emailValid);
+  document.getElementById('dfield-phone').classList.toggle('invalid', !phoneValid);
+  document.getElementById('dfield-vehicle').classList.toggle('invalid', !vehicleValid);
+
+  if (!(nameValid && emailValid && phoneValid && vehicleValid && cityValid)) return;
+
+  var driverSubmitBtn = driverForm.querySelector('button[type="submit"]');
+  driverSubmitBtn.disabled = true;
+  driverSubmitBtn.textContent = 'Sending...';
+
+  fetch('https://formspree.io/f/xgojebqg', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      formType: 'Driver Application',
+      name: name, email: email, phone: phone,
+      vehiclePreference: vehicle, city: city,
+      license: document.getElementById('driverLicense').value.trim(),
+      notes: document.getElementById('driverMessage').value.trim()
+    })
+  })
+  .then(function(res){
+    if (res.ok) {
+      driverForm.classList.add('hidden');
+      driverSuccessBox.classList.add('show');
+    } else { throw new Error(); }
+  })
+  .catch(function(){
+    alert('Something went wrong. Please try again or email hello@farinimotion.com.');
+  })
+  .finally(function(){
+    driverSubmitBtn.disabled = false;
+    driverSubmitBtn.textContent = 'Apply to Drive';
+  });
+});
+
+resetDriverBtn.addEventListener('click', function(){
+  driverForm.reset();
+  driverForm.classList.remove('hidden');
+  driverSuccessBox.classList.remove('show');
+});
+  
 })();
 </script>
 
